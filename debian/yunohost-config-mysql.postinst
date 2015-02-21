@@ -43,4 +43,4 @@ then
 	chmod 400 /etc/yunohost/mysql
 fi
 
-/etc/init.d/mysqld reload
+/etc/init.d/mysql reload

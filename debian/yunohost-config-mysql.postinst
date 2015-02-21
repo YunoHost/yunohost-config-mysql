@@ -1,17 +1,14 @@
 #!/bin/bash
 
 DOMAIN=$(hostname -d)
-
 HOSTNAME=$(hostname -f)
-
 TMP="/usr/share/yunohost/yunohost-config/mysql"
 
 function randpass() {
-  [ "$2" == "0" ] && CHAR="[:alnum:]" || CHAR="[:graph:]"
-    cat /dev/urandom | tr -cd "$CHAR" | head -c ${1:-32}
-    echo
+	[ "$2" == "0" ] && CHAR="[:alnum:]" || CHAR="[:graph:]"
+	cat /dev/urandom | tr -cd "$CHAR" | head -c ${1:-32}
+	echo
 }
-
 
 #Mysql
 APPCHK=$(/bin/ps aux | grep mysqld | grep -vc "grep")
@@ -22,10 +19,9 @@ then
 	cp $TMP/my.cnf /etc/mysql
 fi
 
-
 if [ $APPCHK = '0' ];
-then 
-/etc/init.d/mysql start
+then
+	/etc/init.d/mysql start
 fi
 
 if [ ! -d /etc/yunohost ];
@@ -34,7 +30,7 @@ then
 fi
 
 if [ ! -f /etc/yunohost/mysql ];
-then	
+then
 	MYSQL=$(randpass 10 0)
 	echo $MYSQL > /etc/yunohost/mysql
 	mysql -pyunohost -e ""
@@ -46,3 +42,5 @@ then
 	fi
 	chmod 400 /etc/yunohost/mysql
 fi
+
+/etc/init.d/mysqld reload

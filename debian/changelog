@@ -1,3 +1,11 @@
+yunohost-config-mysql (2.1.3) testing; urgency=low
+
+  [ Julien Malik ]
+  * Remove bind-address in [client] section
+  * Reload MySQL daemon in postinst
+
+ -- Julien Malik <julien.malik@paraiso.me>  Tue, 17 Mar 2015 22:37:41 +0100
+
 yunohost-config-mysql (2.1.2) testing; urgency=low
 
   [ QGuLL ]

@@ -38,12 +38,12 @@ else
         MYSQL=$(cat /etc/yunohost/mysql)
 fi
 
-mysql -pyunohost -e ""
+mysql -pyunohost -e "" > /dev/null 2>&1
 if [ $? = 0 ];
 then
 	mysqladmin -u root -pyunohost password $MYSQL
 else
-	mysqladmin -u root password $MYSQL || echo "MySQL password already set"
+	mysqladmin -u root password $MYSQL > /dev/null 2>&1 || echo "MySQL password already set"
 fi
 
 

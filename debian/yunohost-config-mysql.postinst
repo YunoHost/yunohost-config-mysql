@@ -33,14 +33,18 @@ if [ ! -f /etc/yunohost/mysql ];
 then
 	MYSQL=$(randpass 10 0)
 	echo $MYSQL > /etc/yunohost/mysql
-	mysql -pyunohost -e ""
-	if [ $? = 0 ];
-	then
-		mysqladmin -u root -pyunohost password $MYSQL
-	else
-		mysqladmin -u root password $MYSQL
-	fi
 	chmod 400 /etc/yunohost/mysql
+else
+        MYSQL=$(cat /etc/yunohost/mysql)
 fi
+
+mysql -pyunohost -e ""
+if [ $? = 0 ];
+then
+	mysqladmin -u root -pyunohost password $MYSQL
+else
+	mysqladmin -u root password $MYSQL || echo "MySQL password already set"
+fi
+
 
 /etc/init.d/mysql reload

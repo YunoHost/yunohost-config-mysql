@@ -1,3 +1,13 @@
+yunohost-config-mysql (2.1.4) testing; urgency=low
+
+  [ Le Kload ]
+  * [fix] Set MySQL root password again if it has been reset by a mysql-server upgrade
+
+  [ kload ]
+  * [fix] Fail silently while testing MySQL passwords
+
+ -- kload <kload@kload.fr>  Tue, 05 May 2015 11:23:05 +0200
+
 yunohost-config-mysql (2.1.3) testing; urgency=low
 
   [ Julien Malik ]
